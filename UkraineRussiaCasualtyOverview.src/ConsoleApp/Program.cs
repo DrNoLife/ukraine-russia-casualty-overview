@@ -21,17 +21,18 @@ highestCasualties.ForEach(x =>
 #endregion
 
 #region Average of last 7 days
-Console.WriteLine("\nThe average amount of dead Russian personel over the last 7 days.");
+int daysNumber = 7;
+Console.WriteLine($"\nThe average amount of dead Russian personel over the last {daysNumber} days.");
 int lastSevenDayTotalDeaths = 0;
 var lastSevenDays = casualtyWrapper.Data
     .OrderByDescending(x => x.Key)
-    .Take(7)
+    .Take(daysNumber)
     .ToList();
 foreach (var day in lastSevenDays)
 {
     lastSevenDayTotalDeaths += day.Value.Personnel;
 }
-int lastSevenDaysAverage = lastSevenDayTotalDeaths / 7;
+int lastSevenDaysAverage = lastSevenDayTotalDeaths / daysNumber;
 Console.WriteLine($"\t{lastSevenDaysAverage}");
 #endregion
 
