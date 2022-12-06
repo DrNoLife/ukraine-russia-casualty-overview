@@ -51,3 +51,21 @@ int killsNeeded = 100_000 - totalDeaths;
 double daysNeeded = killsNeeded / lastSevenDaysAverage;
 Console.WriteLine($"\t{daysNeeded}");
 #endregion
+
+#region Casualties in 1 year of war
+
+DateOnly warStartDate = DateOnly.Parse("24.02.2022");
+DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+int daysWarActive = currentDate.DayNumber - warStartDate.DayNumber;
+int daysInYear = DateTime.IsLeapYear(DateTime.Now.Year) ? 366 : 365;
+int daysLeftTill1Year = daysInYear - daysWarActive;
+int totalAverageDeaths = totalDeaths / daysWarActive;
+
+int totalDeathsAllAverage = totalDeaths + (daysLeftTill1Year * totalAverageDeaths);
+int totalDeathsSevenDayAverage = totalDeaths + (daysLeftTill1Year * lastSevenDaysAverage);
+
+Console.WriteLine("\nTotal projected casualties for 1 year of war: ");
+Console.WriteLine($"\tUsing total average deaths: {totalDeathsAllAverage}");
+Console.WriteLine($"\tUsing last 7 day average deaths: {totalDeathsSevenDayAverage}");
+
+#endregion
