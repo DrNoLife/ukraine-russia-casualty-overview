@@ -106,6 +106,6 @@ string monthName = deadliestMonthIndex switch
 };
 
 Console.WriteLine("\nThe deadliest month for Russia was: ");
-Console.WriteLine($"{monthName} with a total of {deadliestMonthBodycount} deaths.");
+Console.WriteLine($"\t{monthName} with a total of {deadliestMonthBodycount} deaths.");
 
 #endregion
