@@ -106,7 +106,13 @@ string monthName = deadliestMonthIndex switch
     _ => "Unknown month"
 };
 
+
+
+int daysInDeadliestMonth = DateTime.DaysInMonth(2022, deadliestMonthIndex + 1);
+int deadliestMonthAverage = deadliestMonthBodycount / daysInDeadliestMonth;
+
 Console.WriteLine("\nThe deadliest month for Russia was: ");
 Console.WriteLine($"\t{monthName} with a total of {deadliestMonthBodycount} deaths.");
+Console.WriteLine($"\t{monthName} had a daily average of {deadliestMonthAverage} dead Russian soldiers.");
 
 #endregion
