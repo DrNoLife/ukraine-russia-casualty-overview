@@ -106,13 +106,30 @@ string monthName = deadliestMonthIndex switch
     _ => "Unknown month"
 };
 
-
-
 int daysInDeadliestMonth = DateTime.DaysInMonth(2022, deadliestMonthIndex + 1);
 int deadliestMonthAverage = deadliestMonthBodycount / daysInDeadliestMonth;
 
 Console.WriteLine("\nThe deadliest month for Russia was: ");
 Console.WriteLine($"\t{monthName} with a total of {deadliestMonthBodycount} deaths.");
 Console.WriteLine($"\t{monthName} had a daily average of {deadliestMonthAverage} dead Russian soldiers.");
+
+#endregion
+
+#region Daily average required for 100.000 at christmas
+
+DateOnly christmasDate = DateOnly.Parse("25.12.2022");
+int daysTillChristmas = christmasDate.DayNumber - currentDate.DayNumber;
+int deathsTill100k = 100_000 - totalDeaths;
+
+Console.WriteLine("\nIn order to reach 100.000 dead Russian soldiers before christmas (december 25th) we need: ");
+
+if(deathsTill100k > 0)
+{
+    int averageRequired = deathsTill100k / daysTillChristmas;
+    Console.WriteLine($"\tAn average of {averageRequired} dead Russian soldiers each day, for the next {daysTillChristmas} days.");
+} else
+{
+    Console.WriteLine("We've hit over 100.000 deaths.");
+}
 
 #endregion
