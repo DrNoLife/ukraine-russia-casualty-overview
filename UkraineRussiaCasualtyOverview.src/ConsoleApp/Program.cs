@@ -8,8 +8,27 @@ var jsonData = await apiHandler.GetAllDataAsync();
 var dataHandler = new DataHandler(jsonData);
 var casualtyWrapper = dataHandler.GetCasualtyWrapper();
 
+#region Death count today
+int casualtyCountToday;
+DateOnly today;
+
+try
+{
+    today = DateOnly.FromDateTime(DateTime.Now);
+    casualtyCountToday  = casualtyWrapper.Data[today].Personnel;
+}
+catch(Exception ex)
+{
+    today = DateOnly.FromDateTime(DateTime.Now.AddDays(-1));
+    casualtyCountToday = casualtyWrapper.Data[today].Personnel;
+}
+
+Console.WriteLine($"Russian casualty count today ({today})");
+Console.WriteLine($"\tSoldiers: {casualtyCountToday}");
+#endregion
+
 #region 5 most deadly days
-Console.WriteLine("The 5 days with the highest amount of Russian deaths.");
+Console.WriteLine("\nThe 5 days with the highest amount of Russian deaths.");
 var highestCasualties = casualtyWrapper.Data
     .OrderByDescending(x => x.Value.Personnel)
     .Take(5)
